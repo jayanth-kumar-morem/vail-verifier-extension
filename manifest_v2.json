@@ -7,7 +7,7 @@
         {
             "matches": ["*://*.localhost/*"],
             "js": [
-                "vail_verifier_extension.js", "run_wasm.js"
+                "bundle.js"
             ]
         }
     ],
