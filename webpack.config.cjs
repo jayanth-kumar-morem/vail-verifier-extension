@@ -11,11 +11,11 @@ module.exports = {
       run_wasm: './pkg/run_wasm.js',
     },
 
-    // plugins: [
-    //   new WasmPackPlugin({
-    //     crateDirectory: path.resolve(__dirname, "pkg")
-    //   })
-    // ],
+    plugins: [
+      new WasmPackPlugin({
+        crateDirectory: path.resolve(__dirname, "pkg")
+      })
+    ],
 
   output: {
     filename: '[name].bundle.js',
@@ -31,17 +31,16 @@ module.exports = {
     alias: {
       'wbg': path.resolve(__dirname, 'pkg/vail_verifier_extension.js'), // adjust the path if necessary
     },
-    // extensions: ['.js', '.ts', '.wasm']
-    extensions: ['.js', '.ts']
+    extensions: ['.js', '.ts', '.wasm']
   },
 
 
   module: {
     rules: [
-      // {
-      //   test: /\.wasm$/,
-      //   type: 'webassembly/async',
-      // },
+      {
+        test: /\.wasm$/,
+        type: 'webassembly/async',
+      },
   
       {
         test: /\.js$/,
@@ -56,11 +55,11 @@ module.exports = {
       }
     ]
   },
-  // experiments: {
-  //   asyncWebAssembly: true,
-  // },
+  experiments: {
+    asyncWebAssembly: true,
+  },
 
 
-  mode: 'production'
-  // mode: 'development'
+  // mode: 'production'
+  mode: 'development'
 };
