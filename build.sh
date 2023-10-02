@@ -24,16 +24,13 @@ else
 fi
 
 # Copy test.html to pkg
+# cp worker.js pkg/worker.js
+# cp setupWorker.js pkg/setupWorker.js
+
 cp test.html pkg/test.html
+cp run_wasm.js pkg/run_wasm.js
 
-printf "
-const runtime = chrome.runtime || browser.runtime;
-
-async function run() {
-  await wasm_bindgen(runtime.getURL('vail_verifier_extension_bg.wasm'));
-}
-
-run();
-" >> pkg/run_wasm.js
-npm install -y
-npx webpack
+if [ ! -d "node_modules" ]; then
+    npm install -y
+fi
+npx webpack --config webpack.config.cjs

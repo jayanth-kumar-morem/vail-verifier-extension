@@ -5,7 +5,6 @@ use wasm_bindgen_futures::JsFuture;
 use web_sys::{Request, RequestInit, RequestMode, Response};
 use js_sys::Promise;
 
-
 #[wasm_bindgen(js_name = fetchVkey)]
 pub async fn fetch_vkey(repo: String) -> Result<JsValue, JsValue> {
     let mut opts = RequestInit::new();
@@ -32,4 +31,10 @@ pub async fn fetch_vkey(repo: String) -> Result<JsValue, JsValue> {
 
     // Send the JSON response back to JS.
     Ok(json)
+}
+
+#[wasm_bindgen(js_name = sayHello)]
+pub async fn say_hello(name: String) -> Result<JsValue, JsValue> {
+    // Send the name as JSON response back to JS.
+    Ok(JsValue::from_str(&format!("Hello, {}!", name)))
 }
